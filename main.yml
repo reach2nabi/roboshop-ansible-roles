@@ -1,5 +1,5 @@
-  - name: Roboshop Project Setup
-    hosts: all
-    become: true
-    roles:
-      -"{{ component }}"
+    - name: Roboshop Project Setup
+      hosts: all
+      become: true
+      roles:
+        - "{{ component_name }}"
