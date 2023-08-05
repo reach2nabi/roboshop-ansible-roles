@@ -1,0 +1,30 @@
+- name: Install redis repo
+  ansible.builtin.yum:
+    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    state: installed
+
+- name: Enabled
+  ansible.builtin.shell: yum module enable redis:remi-6.2 -y
+
+- name: Install redis
+  ansible.builtin.yum:
+    name: redis
+    state: started
+
+- name: Replace old hostname with new hostname
+  ansible.builtin.replace:
+    path: /etc/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Replace old hostname with new hostname
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Start Redis
+  ansible.builtin.systemd:
+    name: redis
+    state: restarted
+    enabled: yes

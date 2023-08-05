@@ -1,0 +1,15 @@
+  - name: Copy file
+    ansible.builtin.copy:
+      src: dispatch.service
+      dest: /etc/systemd/system/dispatch.service
+
+  - name: Install the golanguage
+    ansible.builtin.yum:
+      name: golang
+      state: installed
+
+  - name: Application prereq
+    ansible.builtin.import_tasks: appprereq.yml
+
+  - name: SystemD
+    ansible.builtin.import_tasks: systemd.yml
