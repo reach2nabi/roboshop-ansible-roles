@@ -1,5 +1,5 @@
   - name: Imported tasks from Nodejs
     ansible.builtin.include_role:
       name: common
-      tasks_from: nodejs.yml
+      tasks_from: nodejs
 
